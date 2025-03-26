@@ -133,16 +133,18 @@
     <ClInclude Include="Core\Utils\UtilityFunctions.hpp" />
     <ClInclude Include="ThirdParty\json.hpp" />
     <ClInclude Include="ThirdParty\olcPixelGameEngine.hpp" />
-    <ClInclude Include="Core\Map\Tile.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Singletons\EngineCore.cpp" />
     <ClCompile Include="Core\Extensions\EngineCoreExt.cpp" />
     <ClCompile Include="ThirdParty\olcPixelGameEngine.cpp" />
-    <ClCompile Include="Core\Map\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Graphics\background_tiles.png" />
+    <Image Include="Resources\Graphics\Fonts\font_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Graphics\Fonts\font_small_data.fnt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

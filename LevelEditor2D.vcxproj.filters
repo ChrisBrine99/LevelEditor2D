@@ -33,9 +33,6 @@
     <ClInclude Include="Core\Utils\UtilityFunctions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Map\Tile.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThirdParty\olcPixelGameEngine.cpp">
@@ -47,13 +44,16 @@
     <ClCompile Include="Core\Extensions\EngineCoreExt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Map\Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Graphics\background_tiles.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Graphics\Fonts\font_small.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Graphics\Fonts\font_small_data.fnt" />
   </ItemGroup>
 </Project>

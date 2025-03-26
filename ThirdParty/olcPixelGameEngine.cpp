@@ -1,4 +1,6 @@
 #define OLC_PGE_APPLICATION
+#define OLC_GFX_OPENGL33
+#define OLC_PLATFORM_WINAPI
 #include "../Core/Singletons/EngineCore.hpp"
 
 #include <ctime>

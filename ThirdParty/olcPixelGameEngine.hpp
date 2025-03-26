@@ -3950,6 +3950,7 @@ namespace olc
 					// Display Decals in order for this layer
 					for (auto& decal : layer->vecDecalInstance)
 						renderer->DrawDecal(decal);
+
 					layer->vecDecalInstance.clear();
 				}
 				else
@@ -5033,7 +5034,7 @@ namespace olc
 
 			for (uint32_t i = 0; i < decal.points; i++)
 				pVertexMem[i] = { { decal.pos[i].x, decal.pos[i].y, decal.w[i] }, { decal.uv[i].x, decal.uv[i].y }, decal.tint[i] };
-
+			
 			locBufferData(0x8892, sizeof(locVertex) * decal.points, pVertexMem, 0x88E0);
 
 			if (nDecalMode == DecalMode::WIREFRAME)

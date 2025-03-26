@@ -53,9 +53,9 @@
 //	the program's window when multiplied by the WINDOW_SCALE macro that is below said width and height values.							//
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 
-#define VIEWPORT_WIDTH					640
-#define VIEWPORT_HEIGHT					360
-#define WINDOW_SCALE					2
+#define VIEWPORT_WIDTH					640i32
+#define VIEWPORT_HEIGHT					360i32
+#define WINDOW_SCALE					2i32
 
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 //	A value that is equivalent to roughly 1/60th of a second. Allows fixed updating for code that requires it.							//
@@ -138,58 +138,40 @@
 #define STATE_INVALID					0xFFui8
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
-//	Macros that represent the section headers for the settings saved within "settings.ini". Basically prevents accidental typos when	//
-//	referencing each section since the macro auotfills itself but a string won't care if it matches another when hardcoded.				//
+//	Macros for the area of the window occupied by the GUI that the user can utilize to select a tile, adjust the map dimensions, its	//
+//	location name, and so on.																											//
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define SETTINGS_GROUP_VIDEO			"[VIDEO]"
-#define SETTINGS_GROUP_AUDIO			"[AUDIO]"
-#define SETTINGS_GROUP_INPUT			"[INPUT]"
-#define SETTINGS_GROUP_ACCESSIBILITY	"[ACCESSIBILITY]"
+#define GUI_WIDTH						130i32
+#define GUI_HEIGHT						360i32
+#define GUI_WIDTH_F						130.0f
+#define GUI_HEIGHT_F					360.0f
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
-//	Macros that represent the key values for each respective group's volume value, which is a floating point number ranging between		//
-//  0.0 and 1.0. The master volume will further reduce the volumes of both the music and sound effect volume levels.					//
+//	
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define AUDIO_MASTER_VOLUME				"Master"
-#define AUDIO_MUSIC_VOLUME				"Music"
-#define AUDIO_SOUND_EFFECT_VOLUME		"Sounds"
+#define MAP_WIDTH_UNCHANGED				0xFFFFui16
+#define MAP_HEIGHT_UNCHANGED			0xFFFFui16
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
-//	Macros that represent the key values for their respective input bindings within the master input bindings map stored in the game's	//
-//	settings singleton class.																											//
+//	
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-// ------- Inputs that are unique to in-game actions -------- //
-
-#define INPUT_MOVE_RIGHT				"MoveRight"
-#define INPUT_MOVE_LEFT					"MoveLeft"
-#define INPUT_MOVE_UP					"MoveUp"
-#define INPUT_MOVE_DOWN					"MoveDown"
-#define INPUT_INTERACT					"Interact"
-
-// ---------------------------------------------------------- //
-
-// --- Inputs that are unique to any menu within the game --- //
-
-#define INPUT_MENU_RIGHT				"MenuRight"
-#define INPUT_MENU_LEFT					"MenuLeft"
-#define INPUT_MENU_UP					"MenuUp"
-#define INPUT_MENU_DOWN					"MenuDown"
-#define INPUT_MENU_SELECT				"MenuSelect"
-#define INPUT_MENU_RETURN				"MenuReturn"
-#define INPUT_SAVE_FILE_DELETE			"SaveFileDelete"
-#define INPUT_SAVE_FILE_COPY			"SaveFileCopy"
-
-// ---------------------------------------------------------- //
+#define FLAG_BUTTON_ACTIVE				0x00000001ui32
+#define FLAG_BUTTON_VISIBLE				0x00000002ui32
+#define FLAG_BUTTON_SELECTABLE			0x00000004ui32
+#define FLAG_BUTTON_SELECTED			0x00000008ui32
+#define FLAG_BUTTON_IN_BOUNDS			0x00000010ui32
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
-//	Defines that will determine how many party members the player can have in their roster at once, as well as the amount of those		//
-//	that can set to the active roster versus the reserve roster.																		//
+//	
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define PARTY_ROSTER_MAX_SIZE			5ui64
-#define PARTY_ACTIVE_MAX_SIZE			3ui64
+#define BUTTON_IS_ACTIVE				(flags & FLAG_BUTTON_ACTIVE)
+#define BUTTON_IS_VISIBLE				(flags & FLAG_BUTTON_VISIBLE)
+#define BUTTON_IS_SELECTABLE			(flags & FLAG_BUTTON_SELECTABLE)
+#define BUTTON_IS_SELECTED				(flags & FLAG_BUTTON_SELECTED)
+#define BUTTON_IS_MOUSE_IN_BOUNDS		(flags & FLAG_BUTTON_IN_BOUNDS)
 
 #endif
