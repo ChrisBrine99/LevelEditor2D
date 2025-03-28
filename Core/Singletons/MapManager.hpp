@@ -2,51 +2,38 @@
 #define MAP_MANAGER_HPP
 
 #include "../Utils/GeneralMacros.hpp"
+#include "../../ThirdParty/olcPixelGameEngine.hpp"
 
-#include <string>
-#include <vector>
-
-// ------------------------------------------------------------------------------------------------------------------------------------ //
-//	
-// ------------------------------------------------------------------------------------------------------------------------------------ //
-
-#define MAP_INDEX_INVALID					0xFFFFFFFFFFFFFFFFui64
-
-class Tile;
-struct MapData;
+class EngineCore;
+struct Tile;
 
 class MapManager {
 	// Singleton Initialization (Creates Constructor/Destrcutor Declarations)
 	INIT_SINGLETON_HPP(MapManager)
-
 public: // Main Engine Function Declarations
-	bool OnUserUpdate(float_t _deltaTime);
-	bool OnUserRender(float_t _deltaTime);
+	bool OnUserCreate();
+	bool OnUserDestroy();
+	bool OnUserRender(EngineCore* _engine, float_t _deltaTime) const;
 
-public: // Public Utility Function Declarations
-	bool LoadMap(const std::string& _path, uint16_t _tilesheetID, uint16_t _id);
-	void UnloadMap(uint16_t _id);
+public: // Publicly Accessible Utility Function Declarations
+	void UpdateMapDimensions(uint16_t _width = MAP_WIDTH_UNCHANGED, uint16_t _height = MAP_HEIGHT_UNCHANGED);
 
 private: // Hidden Utility Function Declarations
-	inline size_t FindMapWithID(uint16_t _id) {
-		for (MapData& _data : loadedMaps) {
-			if (_data.mapID == _id)
-				return _data.mapID;
-		}
-		return MAP_INDEX_INVALID;
-	}
+	void GenerateNewMapTexture(uint16_t _width, uint16_t _height);
 
-public: // Publicly Member Variable Declarations
-	std::vector<MapData> loadedMaps;
-	size_t curMapIndex;
-};
-
-struct MapData {
-	std::vector<Tile*> tiles;
-	uint16_t mapID;
-	uint16_t tilesheetID;
+public: // Publicly Accessible Member Variable Declarations
+	olc::Renderable		mapSprite;
+	olc::Sprite*		tilesheet;
+	std::vector<Tile>	tiles;
+	uint16_t id;
 	uint16_t width;
 	uint16_t height;
+};
+
+struct Tile {
+	uint16_t xCell;
+	uint16_t yCell;
+	uint32_t flags;
 };
 
 #endif

@@ -58,43 +58,83 @@
 #define WINDOW_SCALE					2i32
 
 // ------------------------------------------------------------------------------------------------------------------------------------	//
+//	Duplicates of the trio of macros above that are simply the floating point counterparts to those values if required while drawing	//
+//	things to the screen.																												//
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+
+#define VIEWPORT_WIDTH_F				640.0f
+#define VIEWPORT_HEIGHT_F				360.0f
+#define WINDOW_SCALE_F					2.0f
+
+// ------------------------------------------------------------------------------------------------------------------------------------	//
 //	A value that is equivalent to roughly 1/60th of a second. Allows fixed updating for code that requires it.							//
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 
 #define GAME_UPDATE_INTERVAL			0.0167f
 
 // ------------------------------------------------------------------------------------------------------------------------------------	//
-//	A define for the width and height of a background tile so the number it represents isn't thrown all over the code manually.			//
+//	Two defines for the size of a tile along both axes. The first value is the number as an integer, and the second is a float.			//
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 
 #define TILE_SIZE						16ui32
+#define TILE_SIZE_F						16.0f
+
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+//	Simply stores the width and height of the mono-spaced font utilzed internally by the PixelGameEngine. Placed into two seperate		//
+//	defines despite being the same value to provide clarity on what the value represents within a calculation when required.			//
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+
+#define TEXT_WIDTH						8ui32
+#define TEXT_HEIGHT						8ui32
+
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+//	Defines that are simply the floating point versions of the two values for tile width and height above.								//
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+
+#define TEXT_WIDTH_F					8.0f
+#define TEXT_HEIGHT_F					8.0f
+
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+//	Defines that will determine how a text element will render itself relative to its position which internally acts as the origin.		//
+// ------------------------------------------------------------------------------------------------------------------------------------	//
+
+#define HALIGN_LEFT						0x00ui8
+#define HALIGN_CENTER					0x01ui8
+#define HALIGN_RIGHT					0x02ui8
+#define HALIGN_INVALID					0xFEui8
+#define HALIGN_NOCHANGE					0xFFui8
+#define VALIGN_TOP						0x80ui8
+#define VALIGN_MIDDLE					0x81ui8
+#define VALIGN_BOTTOM					0x82ui8
+#define VALIGN_INVALID					0xFEui8
+#define VALIGN_NOCHANGE					0xFFui8
 
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 //	Condenses the code required for initializing a singleton (Within the .hpp file of said singleton class) into a single-line define.	//
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 
-#define INIT_SINGLETON_HPP(_x)									\
-			private:											\
-				_x();											\
-				~_x() = default;								\
-			public:												\
-				_x(const _x&) = delete;							\
-				void operator=(const _x&) = delete;				\
-			protected:											\
-				static _x* s_instance;							\
-			public:												\
-				static _x* GetInstance();						\
+#define INIT_SINGLETON_HPP(_x)						\
+			private:								\
+				_x();								\
+				~_x() = default;					\
+			public:									\
+				_x(const _x&) = delete;				\
+				void operator=(const _x&) = delete;	\
+			protected:								\
+				static _x* s_instance;				\
+			public:									\
+				static _x* GetInstance();			\
 
 // ------------------------------------------------------------------------------------------------------------------------------------	//
 //	Condenses the code required for initializing a singleton (Within the .cpp file of said singleton class) into a single-line define.	//
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define INIT_SINGLETON_CPP(_x)									\
-			_x* _x::s_instance = nullptr;						\
-			_x* _x::GetInstance(){								\
-				if (s_instance == nullptr)						\
-					s_instance = new _x();						\
-				return s_instance;								\
+#define INIT_SINGLETON_CPP(_x)						\
+			_x* _x::s_instance = nullptr;			\
+			_x* _x::GetInstance(){					\
+				if (s_instance == nullptr)			\
+					s_instance = new _x();			\
+				return s_instance;					\
 			}
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
@@ -104,12 +144,12 @@
 //  funciton, respectively.																												//
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define CALL_SINGLETON_CREATE(_x, _func)						\
-			if (!GET_SINGLETON(_x)->_func())					\
+#define CALL_SINGLETON_CREATE(_x, _func)				\
+			if (!GET_SINGLETON(_x)->_func())			\
 				return false
 
-#define CALL_SINGLETON_UPDATE(_x, _func)						\
-			if (!GET_SINGLETON(_x)->_func(_deltaTime))			\
+#define CALL_SINGLETON_UPDATE(_x, _func)				\
+			if (!GET_SINGLETON(_x)->_func(_deltaTime))	\
 				return false
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
@@ -117,12 +157,12 @@
 //	a function as the second parameter since there is only ever one destroy and one render function in the engine.						//
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
-#define CALL_SINGLETON_DESTROY(_x)								\
-			if (!GET_SINGLETON(_x)->OnUserDestroy())			\
+#define CALL_SINGLETON_DESTROY(_x)										\
+			if (!GET_SINGLETON(_x)->OnUserDestroy())					\
 				return false
 
-#define CALL_SINGLETON_RENDER(_x)								\
-			if (!GET_SINGLETON(_x)->OnUserRender(_deltaTime))	\
+#define CALL_SINGLETON_RENDER(_x)										\
+			if (!GET_SINGLETON(_x)->OnUserRender(_engine, _deltaTime))	\
 				return false
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
@@ -148,11 +188,18 @@
 #define GUI_HEIGHT_F					360.0f
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
-//	
+//	Two defines that allow the function "
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 
 #define MAP_WIDTH_UNCHANGED				0xFFFFui16
 #define MAP_HEIGHT_UNCHANGED			0xFFFFui16
+
+// ------------------------------------------------------------------------------------------------------------------------------------ //
+//	
+// ------------------------------------------------------------------------------------------------------------------------------------ //
+
+#define BUTTON_INDEX_INVALID			0xFFFFFFFFFFFFFFFFui64
+#define ID_INVALID						0xFFFFui16
 
 // ------------------------------------------------------------------------------------------------------------------------------------ //
 //	

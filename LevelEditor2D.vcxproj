@@ -127,6 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Singletons\MapManager.hpp" />
+    <ClInclude Include="Core\UI\Buttons\ButtonMapWidth.hpp" />
+    <ClInclude Include="Core\UI\Buttons\Button.hpp" />
+    <ClInclude Include="Core\Singletons\MainEditor.hpp" />
+    <ClInclude Include="Core\UI\TextElement.hpp" />
     <ClInclude Include="Core\Utils\GeneralMacros.hpp" />
     <ClInclude Include="Core\Singletons\EngineCore.hpp" />
     <ClInclude Include="Core\Extensions\EngineCoreExt.hpp" />
@@ -135,8 +140,13 @@
     <ClInclude Include="ThirdParty\olcPixelGameEngine.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Singletons\MapManager.cpp" />
+    <ClCompile Include="Core\UI\Buttons\ButtonMapWidth.cpp" />
+    <ClCompile Include="Core\UI\Buttons\Button.cpp" />
     <ClCompile Include="Core\Singletons\EngineCore.cpp" />
     <ClCompile Include="Core\Extensions\EngineCoreExt.cpp" />
+    <ClCompile Include="Core\Singletons\MainEditor.cpp" />
+    <ClCompile Include="Core\UI\TextElement.cpp" />
     <ClCompile Include="ThirdParty\olcPixelGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
